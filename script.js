@@ -15,9 +15,9 @@ const page3 = document.getElementById("page3");
 const confirmBtn = document.getElementById("confirmBtn");
 const chosenDate = document.getElementById("chosenDate");
 
+const nameInput = document.getElementById("name");
 const dateInput = document.getElementById("date");
 const timeInput = document.getElementById("time");
-
 // Background Music
 const bgMusic = document.getElementById("bgMusic");
 
@@ -104,22 +104,25 @@ yesBtn.addEventListener("click", () => {
 
 confirmBtn.addEventListener("click", async () => {
 
-    if (dateInput.value === "" || timeInput.value === "") {
-
-        alert("Choose our date first ❤️");
-        return;
-
-    }
+   if (
+    nameInput.value === "" ||
+    dateInput.value === "" ||
+    timeInput.value === ""
+) {
+    alert("Please enter your name and choose our date ❤️");
+    return;
+}
+    
 
     const { error } = await supabaseClient
     .from("responses")
     .insert([
-        {
-            name: "Anonymous",
-            date: dateInput.value,
-            time: timeInput.value
-        }
-    ]);
+    {
+        name: nameInput.value,
+        date: dateInput.value,
+        time: timeInput.value
+    }
+]);
 
 if (error) {
     console.error(error);
