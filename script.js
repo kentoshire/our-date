@@ -1,3 +1,9 @@
+const { createClient } = supabase;
+
+const supabaseClient = createClient(
+    "https://YOUR_PROJECT.supabase.co",
+    "YOUR_PUBLISHABLE_KEY"
+
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 
