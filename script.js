@@ -101,7 +101,7 @@ yesBtn.addEventListener("click", () => {
 
 });
 
-confirmBtn.addEventListener("click", () => {
+confirmBtn.addEventListener("click", async () => {
 
     if (dateInput.value === "" || timeInput.value === "") {
 
@@ -110,6 +110,21 @@ confirmBtn.addEventListener("click", () => {
 
     }
 
+    const { error } = await supabaseClient
+    .from("responses")
+    .insert([
+        {
+            name: "Anonymous",
+            date: dateInput.value,
+            time: timeInput.value
+        }
+    ]);
+
+if (error) {
+    console.error(error);
+    alert("Failed to save.");
+    return;
+}
     page2.classList.add("hidden");
     page3.classList.remove("hidden");
 
